@@ -39,8 +39,10 @@ def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, fram
     estimations = np.vstack((clean_predicted[:min_length_total],noisy_predicted[:min_length_total]))
 
 
-    sdr, _, _, _,_ = mir_eval.separation.bss_eval_images(references,estimations) # clean predicted = noisy_output... # noisy_signal is pure noise
+    sdr, sir, sar, _ = mir_eval.separation.bss_eval_sources(references,estimations) # clean predicted = noisy_output... # noisy_signal is pure noise
     print(sdr)
+    print(sir)
+    print(sar)
     return sdr[0],sdr[1]
 
 def compute_SDR_single(references, estimates, framerate=8000):
