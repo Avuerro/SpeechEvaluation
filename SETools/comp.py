@@ -71,7 +71,9 @@ def comp(
         "STOI Improvement", # "STOI 提升",
         "STOI Improvement alt", # just subtracting the two STOIs
         "SDR true clean  vs predicted clean",
-        "SDR true noise vs predicted noise "
+        "SDR true noise vs predicted noise ",
+        "SDR true clean vs estimated clean", # ref = clean , est = noisy
+        "SDR true noise vs estimated noise" # ref = pure_noise, est = pred noise
         # "PESQ 提升",
     )  # 定义导出为 Excel 文件的格式
     metrics_seq = []
@@ -87,6 +89,8 @@ def comp(
         snr_noisysignal_purenoise = compute_SNR(noisy_wav, purenoise_wav)
         snr_denoisedsignal_purenoise = compute_SNR(denoised_wav, purenoise_wav)
         sdr_c_pc,sdr_n_pn = compute_SDR(clean_wav,denoised_wav, purenoise_wav, predicted_noise_wav)
+        sdr_clean_clean_pred = compute_SDR_single(clean_wav,denoised_wav)
+        sdr_noise_pred_noise = compute_SDR_single(purenoise_wav, predicted_noise_wav)
 
         # pesq_c_n = compute_PESQ(clean_wav[:shorter_length], noisy_wav[:shorter_length])
         # pesq_c_d = compute_PESQ(clean_wav[:shorter_length], denoisy_wav[:shorter_length])
@@ -110,7 +114,9 @@ def comp(
                 round((stoi_c_d - stoi_c_n) / stoi_c_n, 4),
                 round((stoi_c_d - stoi_c_n), 4),
                 sdr_c_pc,
-                sdr_n_pn
+                sdr_n_pn,
+                sdr_clean_clean_pred,
+                sdr_noise_pred_noise
                 # (pesq_c_d - pesq_c_n) / pesq_c_n,
             )
         )

@@ -27,22 +27,18 @@ def compute_SNR(clean_signal, noisy_signal):
 def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, framerate = 8000):
     references = [clean_signal,noisy_signal]
     estimations = [clean_predicted,noisy_predicted]
-    print("clean signal shape")
-    print(clean_signal.shape)
-    print("noisy signal shape ")
-    print(noisy_signal.shape)
-    print(" clean predicted shape")
-    print(clean_predicted.shape)
-
-    print("noisy predicted shape")
-    print(noisy_predicted.shape)
-
 
     min_length = min(len(clean_signal), len(noisy_signal), len(clean_predicted), len(noisy_predicted))
     print(min_length)
     sdr, _, _, _, _ = mir_eval.separation.bss_eval_images([clean_signal[:min_length],noisy_signal[:min_length]],[clean_predicted[:min_length],noisy_predicted[:min_length]]) # clean predicted = noisy_output... # noisy_signal is pure noise
     print(sdr)
     return sdr[0],sdr[1]
+
+def compute_SDR_single(references, estimates, framerate=8000):
+    min_length = min(len(references), len(estimates))
+
+    sdr, _, _, _, _ = mir_eval.separation.bss_eval_images(references, estimates)
+    return sdr
 
 # def _compute_PESQ_sub_task(clean_signal, noisy_siganl, sr=16000):
 #     return pesq(clean_signal, noisy_siganl, sr)
