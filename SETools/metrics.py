@@ -25,12 +25,20 @@ def compute_SNR(clean_signal, noisy_signal):
     return round(snr,4)
 
 def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, framerate = 8000):
+    
     references = [clean_signal,noisy_signal]
     estimations = [clean_predicted,noisy_predicted]
 
     min_length = min(len(clean_signal), len(noisy_signal), len(clean_predicted), len(noisy_predicted))
     print(min_length)
-    sdr, _, _, _ = mir_eval.separation.bss_eval_sources([clean_signal[:min_length],noisy_signal[:min_length]],[clean_predicted[:min_length],noisy_predicted[:min_length]]) # clean predicted = noisy_output... # noisy_signal is pure noise
+
+    references = [clean_signal[:min_length],noisy_signal[:min_length]]
+
+    estimations = [clean_predicted,noisy_predicted]
+
+
+    # sdr, _, _, _ = mir_eval.separation.bss_eval_sources([clean_signal[:min_length],noisy_signal[:min_length]],[clean_predicted[:min_length],noisy_predicted[:min_length]]) # clean predicted = noisy_output... # noisy_signal is pure noise
+    sdr = [1,2]
     print(sdr)
     return sdr[0],sdr[1]
 
