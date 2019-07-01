@@ -94,9 +94,7 @@ def comp(
         print("---")
         print(os.path.splitext(os.path.basename(noisy_wav_paths[i])))
         print("---")
-        num, noise = os.path.splitext(os.path.basename(noisy_wav_paths[i]))[
-            0
-        ].split("_")
+        num = noisy_wav_paths[i] 
         snr = "todo"
         noise = "todo"
         metrics_seq.append(
