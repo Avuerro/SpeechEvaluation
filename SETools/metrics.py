@@ -36,8 +36,9 @@ def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, fram
 
 def compute_SDR_single(references, estimates, framerate=8000):
     min_length = min(len(references), len(estimates))
-
+    print("dddd")
     sdr, _, _, _, _ = mir_eval.separation.bss_eval_images(references[:min_length], estimates[:min_length])
+    print(sdr)
     return sdr
 
 # def _compute_PESQ_sub_task(clean_signal, noisy_siganl, sr=16000):
