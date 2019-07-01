@@ -38,9 +38,9 @@ def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, fram
     print(noisy_predicted.shape)
 
 
-    min_length = min(len(clean_signal), len(noisy_signal))
-
-    sdr, _, _, _, _ = mir_eval.separation.bss_eval_images([clean_signal[:min_length],noisy_signal[:min_length]],[clean_predicted,noisy_predicted]) # clean predicted = noisy_output... # noisy_signal is pure noise
+    min_length = min(len(clean_signal), len(noisy_signal), len(clean_predicted), len(noisy_predicted))
+    print(min_length)
+    sdr, _, _, _, _ = mir_eval.separation.bss_eval_images([clean_signal[:min_length],noisy_signal[:min_length]],[clean_predicted[:min_length],noisy_predicted[:min_length]]) # clean predicted = noisy_output... # noisy_signal is pure noise
     print(sdr)
     return sdr[0],sdr[1]
 
