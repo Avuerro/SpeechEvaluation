@@ -32,23 +32,6 @@ def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, fram
     min_length_a = min(len(clean_signal), len(clean_predicted))
     min_length_b = min(len(noisy_signal), len(noisy_predicted))
     min_length_total = min(min_length_a,min_length_b)
-    print(min_length_a)
-    print(min_length_b)
-    print(min_length_total)
-    print("----SHAPES----")
-    print("clean_signal shape")
-    print(clean_signal.shape)
-
-    print("noisy signal shape")
-    print(noisy_signal.shape)
-
-    print("clean predicted shape")
-    print(clean_predicted.shape)
-
-    print("noisy predicted shape")
-    print(noisy_predicted.shape)
-    print("----SHAPES----")
-
 
 
     references = np.vstack((clean_signal[:min_length_total],noisy_signal[:min_length_total]))
