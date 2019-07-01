@@ -23,10 +23,11 @@ def call():
     parser.add_argument("--denoised_dir", required=True, type=str, help="denoised wav files directory")
     parser.add_argument("--clean_dir", required=True, type=str, help="clean wav files directory")
     parser.add_argument("--purenoise_dir", required=True, type=str, help="pure noise wav files location")
+    parser.add_argument("--predicted_noise_dir", required=True, type=str, help =" predicted noise wav files location")
     parser.add_argument("--output_path", default="./output.xls", type=str, help="output dir, filename should end on .xls")
     parser.add_argument("--limit", default=0, type=int, help="file limit, 0 means no limit")
     parser.add_argument("--offset", default=0, type=int, help="start from file with index nr")
-    parser.add_argument("--sr", default=16000, type=int, help="sample rate ")
+    parser.add_argument("--sr", default=8000, type=int, help="sample rate ")
 
     args = parser.parse_args()
     print(args.noisy_dir)
@@ -36,6 +37,7 @@ def call():
         clean_dir=args.clean_dir,
         denoised_dir=args.denoised_dir,
         purenoise_dir = args.purenoise_dir,
+        predicted_noise_dir = args.predicted_noise_dir,
         sr=args.sr,
         limit=args.limit,
         offset=args.offset,

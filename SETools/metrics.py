@@ -8,7 +8,6 @@ import mir_eval
 
 def compute_STOI(clean_signal, noisy_signal, sr=8000): # changed framerate from 16000 to 8000
     stoi_val = stoi(clean_signal, noisy_signal, sr, extended=False)
-    compute_SDR(clean_signal, noisy_signal)
     return round(stoi_val,4)
 
 def compute_POWER(input_signal):
@@ -24,10 +23,10 @@ def compute_SNR(clean_signal, noisy_signal):
     snr_nolog = p_signal/p_noise
     return round(snr,4)
 
-def compute_SDR(clean_signal, noisy_signal, framerate = 8000):
-    sdr, _, _, _, _ = mir_eval.separation.bss_eval_images(clean_signal,noisy_signal)
+def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, framerate = 8000):
+    sdr, _, _, _, _ = mir_eval.separation.bss_eval_images([clean_signal,noisy_signal],[clean_predicted,noisy_predicted]) # clean predicted = noisy_output... # noisy_signal is pure noise
     print(sdr)
-
+    return sdr
 
 # def _compute_PESQ_sub_task(clean_signal, noisy_siganl, sr=16000):
 #     return pesq(clean_signal, noisy_siganl, sr)
