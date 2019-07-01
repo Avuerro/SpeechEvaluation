@@ -10,7 +10,7 @@ import tablib
 from tqdm import tqdm
 import os
 
-from metrics import compute_STOI, compute_SNR, compute_SDR
+from metrics import compute_STOI, compute_SNR, compute_SDR,compute_SDR_single
 from utils import find_aligned_wav_files, find_wav_files
 
 
