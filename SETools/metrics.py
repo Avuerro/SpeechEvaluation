@@ -40,7 +40,7 @@ def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, fram
     estimations = [clean_predicted[:min_length_a],noisy_predicted[:min_length_b]]
 
 
-    sdr, _, _, _ = mir_eval.separation.bss_eval_sources(references, estimations) # clean predicted = noisy_output... # noisy_signal is pure noise
+    sdr, _, _, _ = mir_eval.separation.bss_eval_sources(np.array(references), np.array(estimations)) # clean predicted = noisy_output... # noisy_signal is pure noise
     print(sdr)
     return sdr[0],sdr[1]
 
