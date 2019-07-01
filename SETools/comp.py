@@ -72,6 +72,10 @@ def comp(
         "STOI Improvement alt", # just subtracting the two STOIs
         "SDR true clean  vs predicted clean",
         "SDR true noise vs predicted noise ",
+        "SIR true clean vs predicted clean",
+        "SIR true noise vs predicted noise",
+        "SAR true clean vs predicted clean",
+        "SAR true noise vs predicted noise"
         # "SDR true clean vs estimated clean", # ref = clean , est = noisy
         # "SDR true noise vs estimated noise" # ref = pure_noise, est = pred noise
         # "PESQ 提升",
@@ -88,7 +92,7 @@ def comp(
         stoi_c_d = compute_STOI(clean_wav, denoised_wav)
         snr_noisysignal_purenoise = compute_SNR(noisy_wav, purenoise_wav)
         snr_denoisedsignal_purenoise = compute_SNR(denoised_wav, purenoise_wav)
-        sdr_c_pc,sdr_n_pn = compute_SDR(clean_wav,denoised_wav, purenoise_wav, predicted_noise_wav)
+        sdr_c_pc,sdr_n_pn, sir_c_pc, sir_n_pn, sar_c_pc, sar_n_pn = compute_SDR(clean_wav,denoised_wav, purenoise_wav, predicted_noise_wav)
         # sdr_clean_clean_pred = compute_SDR_single(clean_wav,denoised_wav)
         # sdr_noise_pred_noise = compute_SDR_single(purenoise_wav, predicted_noise_wav)
 
@@ -115,6 +119,10 @@ def comp(
                 round((stoi_c_d - stoi_c_n), 4),
                 sdr_c_pc,
                 sdr_n_pn,
+                sir_c_pc, 
+                sir_n_pn, 
+                sar_c_pc, 
+                sar_n_pn, 
                 # sdr_clean_clean_pred,
                 # sdr_noise_pred_noise
                 # (pesq_c_d - pesq_c_n) / pesq_c_n,

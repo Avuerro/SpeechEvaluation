@@ -43,7 +43,7 @@ def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, fram
     print(sdr)
     print(sir)
     print(sar)
-    return sdr[0],sdr[1]
+    return sdr[0],sdr[1],sir[0],sir[1],sar[0],sar[1]
 
 def compute_SDR_single(references, estimates, framerate=8000):
     min_length = min(len(references), len(estimates))
