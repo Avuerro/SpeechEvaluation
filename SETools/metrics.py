@@ -7,7 +7,8 @@ import mir_eval
 # from pypesq import pesq
 
 def compute_STOI(clean_signal, noisy_signal, sr=8000): # changed framerate from 16000 to 8000
-    stoi_val = stoi(clean_signal, noisy_signal, sr, extended=False)
+    min_length = min(len(clean_signal),len(noisy_signal))
+    stoi_val = stoi(clean_signal[:min_length], noisy_signal[:min_length], sr, extended=False)
     return round(stoi_val,4)
 
 def compute_POWER(input_signal):
@@ -26,7 +27,7 @@ def compute_SNR(clean_signal, noisy_signal):
 def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, framerate = 8000):
     sdr, _, _, _, _ = mir_eval.separation.bss_eval_images([clean_signal,noisy_signal],[clean_predicted,noisy_predicted]) # clean predicted = noisy_output... # noisy_signal is pure noise
     print(sdr)
-    return sdr
+    return sdr[0],sdr[1]
 
 # def _compute_PESQ_sub_task(clean_signal, noisy_siganl, sr=16000):
 #     return pesq(clean_signal, noisy_siganl, sr)
