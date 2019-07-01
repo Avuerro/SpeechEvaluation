@@ -25,6 +25,22 @@ def compute_SNR(clean_signal, noisy_signal):
     return round(snr,4)
 
 def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, framerate = 8000):
+    references = [clean_signal,noisy_signal]
+    estimations = [clean_predicted,noisy_predicted]
+    print("clean signal shape")
+    print(clean_signal.shape)
+    print("noisy signal shape ")
+    print(noisy_signal.shape)
+    print(" clean predicted shape")
+    print(clean_predicted.shape)
+
+    print("noisy predicted shape")
+    print(noisy_predicted.shape)
+
+    print("refs shape")
+    print(references.shape)
+    print("ests shape")
+    print(estimations.shape)
     sdr, _, _, _, _ = mir_eval.separation.bss_eval_images([clean_signal,noisy_signal],[clean_predicted,noisy_predicted]) # clean predicted = noisy_output... # noisy_signal is pure noise
     print(sdr)
     return sdr[0],sdr[1]
