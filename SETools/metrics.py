@@ -34,10 +34,25 @@ def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, fram
     print(min_length_a)
     print(min_length_b)
 
+    print("----SHAPES----")
+    print("clean_signal shape")
+    print(clean_signal.shape)
 
-    references = np.vstack((clean_signal[:min_length_a],noisy_signal[:min_length_b]))
+    print("noisy signal shape")
+    print(noisy_signal.shape)
 
-    estimations = np.vstack((clean_predicted[:min_length_a],noisy_predicted[:min_length_b]))
+    print("clean predicted shape")
+    print(clean_predicted.shape)
+
+    print("noisy predicted shape")
+    print(noisy_predicted.shape)
+    print("----SHAPES----")
+
+
+
+    references = np.vstack((clean_signal[:min_length_a],noisy_signal[:min_length_a]))
+
+    estimations = np.vstack((clean_predicted[:min_length_a],noisy_predicted[:min_length_a]))
 
 
     sdr, _, _, _ = mir_eval.separation.bss_eval_sources(references,estimations) # clean predicted = noisy_output... # noisy_signal is pure noise
