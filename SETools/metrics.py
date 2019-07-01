@@ -29,16 +29,18 @@ def compute_SDR(clean_signal,clean_predicted, noisy_signal,noisy_predicted, fram
     references = [clean_signal,noisy_signal]
     estimations = [clean_predicted,noisy_predicted]
 
-    min_length = min(len(clean_signal), len(noisy_signal), len(clean_predicted), len(noisy_predicted))
-    print(min_length)
-
-    references = [clean_signal[:min_length],noisy_signal[:min_length]]
-
-    estimations = [clean_predicted,noisy_predicted]
+    min_length_a = min(len(clean_signal), len(clean_predicted))
+    min_length_b = min(len(noisy_signal), len(noisy_predicted))
+    print(min_length_a)
+    print(min_length_b)
 
 
-    # sdr, _, _, _ = mir_eval.separation.bss_eval_sources([clean_signal[:min_length],noisy_signal[:min_length]],[clean_predicted[:min_length],noisy_predicted[:min_length]]) # clean predicted = noisy_output... # noisy_signal is pure noise
-    sdr = [1,2]
+    references = np.array(clean_signal[:min_length_a],noisy_signal[:min_length_b])
+
+    estimations = np.array(clean_predicted[:min_length_a],noisy_predicted[:min_length_b])
+
+
+    sdr, _, _, _ = mir_eval.separation.bss_eval_sources(references, estimations) # clean predicted = noisy_output... # noisy_signal is pure noise
     print(sdr)
     return sdr[0],sdr[1]
 
