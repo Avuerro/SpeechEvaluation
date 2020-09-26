@@ -11,7 +11,6 @@ def compute_STOI(clean_signal, noisy_signal, sr=8000):
     return round(stoi_val,4)
 
 def compute_POWER(input_signal):
-    print(input_signal.shape)
     N = len(input_signal)
     power = 1/N * np.sum(input_signal ** 2, axis=0)
     return power
