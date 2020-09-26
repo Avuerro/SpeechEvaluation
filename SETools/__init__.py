@@ -10,7 +10,7 @@ import tablib
 from tqdm import tqdm
 import os
 
-from metrics import compute_STOI #, compute_PESQ
+from metrics import compute_STOI 
 from utils import find_aligned_wav_files
 from comp import comp
 
@@ -29,8 +29,6 @@ def call():
     parser.add_argument("--sr", default=16000, type=int, help="sample rate ")
 
     args = parser.parse_args()
-    print(args.noisy_dir)
-    print("hhhh")
     comp(
         noisy_dir=args.noisy_dir,
         clean_dir=args.clean_dir,
