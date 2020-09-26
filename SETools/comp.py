@@ -10,8 +10,8 @@ import tablib
 from tqdm import tqdm
 import os
 
-from metrics import compute_STOI, compute_SNR
-from utils import find_aligned_wav_files, find_wav_files
+from .metrics import compute_STOI, compute_SNR
+from .utils import find_aligned_wav_files, find_wav_files
 
 
 def comp(
@@ -47,7 +47,7 @@ def comp(
         "SNR clean vs denoised",
         "STOI clean vs noisy", 
         "STOI clean vs denoised", 
-        "STOI Improvement", ,
+        "STOI Improvement",
         "STOI Improvement alt", # just subtracting the two STOIs
     )  
     metrics_seq = []
@@ -62,10 +62,7 @@ def comp(
         stoi_c_d = compute_STOI(clean_wav, denoised_wav)
         snr_noisysignal_purenoise = compute_SNR(noisy_wav, purenoise_wav)
         snr_denoisedsignal_purenoise = compute_SNR(denoised_wav, purenoise_wav)
-        
-        print("---")
-        print(os.path.splitext(os.path.basename(noisy_wav_paths[i])))
-        print("---")
+
         num, noise = os.path.splitext(os.path.basename(noisy_wav_paths[i]))[
             0
         ].split("_")
@@ -79,7 +76,6 @@ def comp(
                 snr_denoisedsignal_purenoise,
                 stoi_c_n,
                 stoi_c_d,
-
                 round((stoi_c_d - stoi_c_n) / stoi_c_n, 4),
                 round((stoi_c_d - stoi_c_n), 4)
             )

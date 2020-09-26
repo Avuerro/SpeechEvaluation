@@ -4,9 +4,8 @@ import multiprocessing
 import math
 import numpy as np
 import mir_eval
-# from pypesq import pesq
 
-def compute_STOI(clean_signal, noisy_signal, sr=8000): # changed framerate from 16000 to 8000
+def compute_STOI(clean_signal, noisy_signal, sr=8000):
     stoi_val = stoi(clean_signal, noisy_signal, sr, extended=False)
     compute_SDR(clean_signal, noisy_signal)
     return round(stoi_val,4)

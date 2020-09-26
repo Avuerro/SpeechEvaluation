@@ -28,17 +28,17 @@ def find_wav_files(wav_files_dir, limit=0, offset=0):
 
 def find_aligned_wav_files(wav_files_dir_A, wav_files_dir_B, limit=0, offset=0):
     """
-    搜索目录中的 wav 文件，并要求两个目录中的 wav *文件数量相等*且*文件名一一对应*
+    Finds wav files in two directories and checks whether the number of files is equal
     Args:
         wav_files_dir_A:
         wav_files_dir_B:
-        limit: 加载文件的数量限制
+        limit: the maximum number of files that should be loaded
 
     Returns:
         length:
-            1. limit == None时，length = 实际数量
-            2. limit <= len(wav_file_paths_A) 时，length = limit
-            2. limit > len(wav_file_paths_A) 时，length = 实际数量
+            1. limit == None, returns all files
+            2. limit <= len(wav_file_paths_A) the number of returned files is equal to limit
+            2. limit > len(wav_file_paths_A) the number of returned files is equal to actual number of files in the folder
     """
     if limit == 0:
         limit = None  
@@ -47,7 +47,7 @@ def find_aligned_wav_files(wav_files_dir_A, wav_files_dir_B, limit=0, offset=0):
     cwd = os.getcwd()
 
     assert len(wav_file_paths_A) == len(wav_file_paths_B) > 0, \
-        "目录 {} 和目录 {} 文件数量不同或目录为空".format(wav_files_dir_A, wav_files_dir_B)
+        "Number of files in {} and {} are different or one of the folders is empty".format(wav_files_dir_A, wav_files_dir_B)
 
     length = len(wav_file_paths_A)
 
