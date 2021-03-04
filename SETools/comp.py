@@ -48,12 +48,12 @@ def comp(
         "STOI clean vs noisy", 
         "STOI clean vs denoised", 
         "STOI Improvement",
-        "STOI Improvement alt", # just subtracting the two STOIs
+        "STOI Improvement alternative", # just subtracting the two STOIs
     )  
     metrics_seq = []
 
     for i, (noisy_wav, clean_wav, denoised_wav, purenoise_wav) in tqdm(
-            enumerate(zip(noisy_wavs, clean_wavs, denoised_wavs, purenoise_wavs)), desc="正在计算评价指标："
+            enumerate(zip(noisy_wavs, clean_wavs, denoised_wavs, purenoise_wavs)), desc="Calculate the evaluation metrices"
     ):
         lengths = [len(noisy_wav), len(clean_wav), len(denoised_wav), len(purenoise_wav)]
         lengths.sort()
