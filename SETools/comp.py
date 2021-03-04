@@ -10,8 +10,8 @@ import tablib
 from tqdm import tqdm
 import os
 
-from .metrics import compute_STOI, compute_SNR
-from .utils import find_aligned_wav_files, find_wav_files
+from metrics import compute_STOI, compute_SNR
+from utils import find_aligned_wav_files, find_wav_files
 
 
 def comp(
